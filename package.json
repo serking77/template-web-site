@@ -1,0 +1,36 @@
+{
+  "name": "template-web-site",
+  "version": "0.0.1",
+  "description": "Template for creating a web site",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node ./node_modules/modernizr/bin/modernizr -c ./node_modules/modernizr/lib/config-all.json -d ./node_modules/modernizr/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serking77/template-web-site.git"
+  },
+  "author": "Valeriy Bagaev",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/serking77/template-web-site/issues"
+  },
+  "homepage": "https://github.com/serking77/template-web-site/issues#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1"
+  },
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "modernizr": "^3.3.1",
+    "normalize.css": "^5.0.0"
+  }
+}
