@@ -11,3 +11,8 @@ npm install
   - Normalize.css
   - Jquery
   - Modernizr
+
+## TODO
+- [ ] Сделать таск с билдом modernizr
+
+
