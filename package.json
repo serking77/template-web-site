@@ -1,11 +1,11 @@
 {
   "name": "template-web-site",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Template for creating a web site",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "node ./node_modules/modernizr/bin/modernizr -c ./node_modules/modernizr/lib/config-all.json -d ./node_modules/modernizr/"
+    "postinstall": "node ./node_modules/modernizr/bin/modernizr -c ./node_modules/modernizr/lib/config-all.json -d ./node_modules/modernizr/"
   },
   "repository": {
     "type": "git",
