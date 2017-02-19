@@ -89,7 +89,8 @@ gulp.task('assets', function() {
 gulp.task('copy-vendor', [
 	'copy:normalize',
     'copy:jquery',
-    'copy:modernizr'
+    'copy:modernizr',
+    'copy:img:plugins'
 ]);
 
 gulp.task('copy:normalize', function() {
@@ -105,5 +106,7 @@ gulp.task('copy:modernizr', function() {
     gulp.src('node_modules/modernizr/modernizr.js')
         .pipe(gulp.dest('build/js/vendor'));
 });
-/**********билд вендорных скриптов*******/
-//./bin/modernizr -c lib/config-all.json
+gulp.task('copy:img:plugins', function() {
+    gulp.src('app/js/vendor/plugins.js')
+        .pipe(gulp.dest('build/js/vendor'));
+});

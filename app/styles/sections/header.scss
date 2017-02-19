@@ -1,0 +1,28 @@
+.header {
+    height: 80px;
+    background: #222;
+    @include box-shadow(0 1px 3px 0 rgba(#000, .5));
+    @extend %clearfix;
+    @include fira(italic);
+}
+
+.header__left,
+.header__right {
+    float: left;
+    width: 50%;
+}
+
+.contacts {
+    @extend %clearfix;
+}
+
+.user__avatar {
+    @include inlineblock(middle);
+    background: #ccc;
+    height: 50px;
+    width: 50px;
+}
+
+.user__name {
+    @include inlineblock(middle);
+}
