@@ -23,7 +23,7 @@ gulp.task('production', ['clean'], function() {
 gulp.task('dev', ['build', 'watch', 'browser-sync']);
 // Задача 'build' представляет собой сборку в режиме продакшен.
 // Собирает проект.
-gulp.task('build', ['copy-vendor', 'styles', 'scripts', 'assets']);
+gulp.task('build', ['styles', 'scripts', 'assets']);
 // Задача 'watch' следит за всеми нашими файлами в проекте и при изменении тех или иных перезапустает соответсвующую задачу.
 gulp.task('watch', function() {
 	gulp.watch('app/styles/**/*.scss', ['styles']); //стили
@@ -79,14 +79,47 @@ gulp.task('browser-sync', function() {
 	});
 });
 //Перемешение наших локальных файлов в папку build
-gulp.task('assets', function() {
-	return gulp.src(['app/{img,fonts}/**/*.*', 'app/*.*'])
-		.pipe(gulp.dest('build/'));
+//gulp.task('assets', function() {
+//	return gulp.src(['app/{img,fonts,styles/vendor,js/vendor}/**/*.*',
+//	                 'app/*.*'])
+//		.pipe(gulp.dest('build/'));
+//});
+
+gulp.task('assets', [
+	'assets:img-fonts',
+    'assets:styles',
+    'assets:js'
+]);
+
+
+gulp.task('assets:img-fonts', function() {
+    gulp.src(['app/{img,fonts}/**/*.*',
+	                 'app/*.*'])
+        .pipe(gulp.dest('build/'));
 });
+
+gulp.task('assets:styles', function() {
+    gulp.src('app/styles/vendor/**/*.*')
+        .pipe(gulp.dest('build/css/vendor/'));
+});
+
+gulp.task('assets:js', function() {
+    gulp.src('app/js/vendor/**/*.*')
+        .pipe(gulp.dest('build/js/vendor/'));
+});
+
+
+
+
+
+
+
+//'app/js/vendor/**/*.*'
+
 
 /**********Работа с вендорными скриптами*****************/
 
-gulp.task('copy-vendor', [
+/*gulp.task('copy-vendor', [
 	'copy:normalize',
     'copy:jquery',
     'copy:modernizr',
@@ -110,3 +143,4 @@ gulp.task('copy:img:plugins', function() {
     gulp.src('app/js/vendor/plugins.js')
         .pipe(gulp.dest('build/js/vendor'));
 });
+*/
