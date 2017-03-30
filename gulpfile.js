@@ -16,8 +16,15 @@ gulp.task('default', ['clean'], function() {
 // Аналогично с предыдушей задачей.
 // Выполняет задача 'clean' и после ее завершения запускается 'build'.
 gulp.task('production', ['clean'], function() {
-	gulp.run('build');
+	gulp.run('jekyll');
 });
+
+//Jekyll
+gulp.task('jekyll', ['build'], function() {
+	 gulp.src(['build/{css,js,fonts,img}/**/*.*', 'build/!(*.html)'])
+        .pipe(gulp.dest('jekyll/'));
+});
+
 // Задача 'dev' представляется собой сборку в режиме разработки.
 // Запускает build - сборку, watcher - слежку за файлами и browser-sync.
 gulp.task('dev', ['build', 'watch', 'browser-sync']);
@@ -57,7 +64,7 @@ gulp.task('styles', function() {
 
 //Задача для удаление папки build.
 gulp.task('clean', function() {
-	return gulp.src('build/')
+	return gulp.src(['build/', 'jekyll/'])
 		.pipe(clean());
 })
 
@@ -108,8 +115,3 @@ gulp.task('assets:js', function() {
         .pipe(gulp.dest('build/js/vendor/'));
 });
 
-//Jekyll
-gulp.task('jekyll', function() {
-    gulp.src('build/*')
-        .pipe(gulp.dest('jekyll/'));
-});
