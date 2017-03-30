@@ -108,39 +108,8 @@ gulp.task('assets:js', function() {
         .pipe(gulp.dest('build/js/vendor/'));
 });
 
-
-
-
-
-
-
-//'app/js/vendor/**/*.*'
-
-
-/**********Работа с вендорными скриптами*****************/
-
-/*gulp.task('copy-vendor', [
-	'copy:normalize',
-    'copy:jquery',
-    'copy:modernizr',
-    'copy:img:plugins'
-]);
-
-gulp.task('copy:normalize', function() {
-    gulp.src('node_modules/normalize.css/normalize.css')
-        .pipe(gulp.dest('build/css/'));
+//Jekyll
+gulp.task('jekyll', function() {
+    gulp.src('build/*')
+        .pipe(gulp.dest('jekyll/'));
 });
-
-gulp.task('copy:jquery', function() {
-    gulp.src('node_modules/jquery/dist/jquery.js')
-        .pipe(gulp.dest('build/js/vendor'));
-});
-gulp.task('copy:modernizr', function() {
-    gulp.src('node_modules/modernizr/modernizr.js')
-        .pipe(gulp.dest('build/js/vendor'));
-});
-gulp.task('copy:img:plugins', function() {
-    gulp.src('app/js/vendor/plugins.js')
-        .pipe(gulp.dest('build/js/vendor'));
-});
-*/
