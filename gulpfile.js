@@ -20,7 +20,7 @@ gulp.task('production', ['clean'], function() {
 });
 
 //Jekyll
-gulp.task('jekyll', ['build'], function() {
+gulp.task('jekyll', ['build', 'jekyll-clean'], function() {
 	 gulp.src(['build/{css,js,fonts,img}/**/*.*', 'build/!(*.html)'])
         .pipe(gulp.dest('jekyll/'));
 });
@@ -64,10 +64,14 @@ gulp.task('styles', function() {
 
 //Задача для удаление папки build.
 gulp.task('clean', function() {
-	return gulp.src(['build/', 'jekyll/'])
+	return gulp.src('build/')
 		.pipe(clean());
 })
 
+gulp.task('jekyll-clean', function() {
+	return gulp.src(['jekyll/*', '!jekyll/_config.yml', '!jekyll/_data', '!jekyll/_drafts', '!jekyll/_includes', '!jekyll/_layouts', '!jekyll/_posts', '!jekyll/_sass', '!jekyll/_site', '!jekyll/.jekyll-metadata', '!jekyll/*.html'])
+		.pipe(clean());
+})
 
 /**********Работа со скриптами*****************/
 
