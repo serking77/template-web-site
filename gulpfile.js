@@ -16,14 +16,20 @@ gulp.task('default', ['clean'], function() {
 // Аналогично с предыдушей задачей.
 // Выполняет задача 'clean' и после ее завершения запускается 'build'.
 gulp.task('production', ['clean'], function() {
-	gulp.run('jekyll');
+	gulp.run('build');
 });
 
 //Jekyll
-gulp.task('jekyll', ['build', 'jekyll-clean'], function() {
+gulp.task('jekyll', ['clean', 'build'], function() {
 	 gulp.src(['build/{css,js,fonts,img}/**/*.*', 'build/!(*.html)'])
         .pipe(gulp.dest('jekyll/'));
 });
+
+//Jekyll
+//gulp.task('jekyll', ['production'], function() {
+//	 gulp.src(['build/{css,js,fonts,img}/**/*.*', 'build/!(*.html)'])
+//        .pipe(gulp.dest('jekyll/'));
+//});
 
 // Задача 'dev' представляется собой сборку в режиме разработки.
 // Запускает build - сборку, watcher - слежку за файлами и browser-sync.
@@ -65,11 +71,6 @@ gulp.task('styles', function() {
 //Задача для удаление папки build.
 gulp.task('clean', function() {
 	return gulp.src('build/')
-		.pipe(clean());
-})
-
-gulp.task('jekyll-clean', function() {
-	return gulp.src(['jekyll/*', '!jekyll/_config.yml', '!jekyll/_data', '!jekyll/_drafts', '!jekyll/_includes', '!jekyll/_layouts', '!jekyll/_posts', '!jekyll/_sass', '!jekyll/_site', '!jekyll/.jekyll-metadata', '!jekyll/*.html'])
 		.pipe(clean());
 })
 
