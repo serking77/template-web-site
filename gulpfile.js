@@ -18,12 +18,25 @@ gulp.task('default', ['clean'], function() {
 gulp.task('production', ['clean'], function() {
 	gulp.run('build');
 });
+
+//Jekyll
+gulp.task('jekyll', ['clean', 'build'], function() {
+	 gulp.src(['build/{css,js,fonts,img}/**/*.*', 'build/!(*.html)'])
+        .pipe(gulp.dest('jekyll/'));
+});
+
+//Jekyll
+//gulp.task('jekyll', ['production'], function() {
+//	 gulp.src(['build/{css,js,fonts,img}/**/*.*', 'build/!(*.html)'])
+//        .pipe(gulp.dest('jekyll/'));
+//});
+
 // Задача 'dev' представляется собой сборку в режиме разработки.
 // Запускает build - сборку, watcher - слежку за файлами и browser-sync.
 gulp.task('dev', ['build', 'watch', 'browser-sync']);
 // Задача 'build' представляет собой сборку в режиме продакшен.
 // Собирает проект.
-gulp.task('build', ['copy-vendor', 'styles', 'scripts', 'assets']);
+gulp.task('build', ['styles', 'scripts', 'assets']);
 // Задача 'watch' следит за всеми нашими файлами в проекте и при изменении тех или иных перезапустает соответсвующую задачу.
 gulp.task('watch', function() {
 	gulp.watch('app/styles/**/*.scss', ['styles']); //стили
@@ -61,7 +74,6 @@ gulp.task('clean', function() {
 		.pipe(clean());
 })
 
-
 /**********Работа со скриптами*****************/
 
 gulp.task('scripts', function() {
@@ -79,34 +91,32 @@ gulp.task('browser-sync', function() {
 	});
 });
 //Перемешение наших локальных файлов в папку build
-gulp.task('assets', function() {
-	return gulp.src(['app/{img,fonts}/**/*.*', 'app/*.*'])
-		.pipe(gulp.dest('build/'));
-});
+//gulp.task('assets', function() {
+//	return gulp.src(['app/{img,fonts,styles/vendor,js/vendor}/**/*.*',
+//	                 'app/*.*'])
+//		.pipe(gulp.dest('build/'));
+//});
 
-/**********Работа с вендорными скриптами*****************/
-
-gulp.task('copy-vendor', [
-	'copy:normalize',
-    'copy:jquery',
-    'copy:modernizr',
-    'copy:img:plugins'
+gulp.task('assets', [
+	'assets:img-fonts',
+    'assets:styles',
+    'assets:js'
 ]);
 
-gulp.task('copy:normalize', function() {
-    gulp.src('node_modules/normalize.css/normalize.css')
-        .pipe(gulp.dest('build/css/'));
+
+gulp.task('assets:img-fonts', function() {
+    gulp.src(['app/{img,fonts}/**/*.*',
+	                 'app/*.*'])
+        .pipe(gulp.dest('build/'));
 });
 
-gulp.task('copy:jquery', function() {
-    gulp.src('node_modules/jquery/dist/jquery.js')
-        .pipe(gulp.dest('build/js/vendor'));
+gulp.task('assets:styles', function() {
+    gulp.src('app/styles/vendor/**/*.*')
+        .pipe(gulp.dest('build/css/vendor/'));
 });
-gulp.task('copy:modernizr', function() {
-    gulp.src('node_modules/modernizr/modernizr.js')
-        .pipe(gulp.dest('build/js/vendor'));
+
+gulp.task('assets:js', function() {
+    gulp.src('app/js/vendor/**/*.*')
+        .pipe(gulp.dest('build/js/vendor/'));
 });
-gulp.task('copy:img:plugins', function() {
-    gulp.src('app/js/vendor/plugins.js')
-        .pipe(gulp.dest('build/js/vendor'));
-});
+
