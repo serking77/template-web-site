@@ -36,12 +36,12 @@ gulp.task('jekyll', ['clean', 'build'], function() {
 gulp.task('dev', ['build', 'watch', 'browser-sync']);
 // Задача 'build' представляет собой сборку в режиме продакшен.
 // Собирает проект.
-gulp.task('build', ['styles', 'scripts', 'assets']);
+gulp.task('build', ['styles', 'assets']);
 // Задача 'watch' следит за всеми нашими файлами в проекте и при изменении тех или иных перезапустает соответсвующую задачу.
 gulp.task('watch', function() {
 	gulp.watch('app/styles/**/*.scss', ['styles']); //стили
-    gulp.watch('app/js/**/*.js', ['scripts']); //скрипты
-    gulp.watch(['app/{img,fonts}/**/*.*', 'app/*.*'], ['assets']); //наши локальные файлы(картинки, шрифты) и index.html
+    //gulp.watch('app/js/**/*.js', ['scripts']); //скрипты
+    gulp.watch(['app/{img,fonts,js}/**/*.*', 'app/*.*'], ['assets']); //наши локальные файлы(картинки, шрифты) и index.html
     gulp.watch('app/**/*.*').on('change', browserSync.reload); //Перезапуск browserSynс
 });
 
@@ -76,11 +76,18 @@ gulp.task('clean', function() {
 
 /**********Работа со скриптами*****************/
 
-gulp.task('scripts', function() {
-  return gulp.src('app/js/**/*.js')
-		.pipe(concat('main.js'))
-		.pipe(gulp.dest('build/js'));
-});
+//gulp.task('scripts', function() {
+//  return gulp.src('app/js/**/*.js')
+//		.pipe(concat('main.js'))
+//		.pipe(gulp.dest('build/js'));
+//});
+
+//gulp.task('scripts', function() {
+//    return gulp.src('app/js/*.js')
+//        .pipe(gulp.dest('build/js/'));
+//});
+
+
 
 //Задача для запуска сервера.
 gulp.task('browser-sync', function() {
@@ -104,11 +111,17 @@ gulp.task('assets', [
 ]);
 
 
+
+
 gulp.task('assets:img-fonts', function() {
-    gulp.src(['app/{img,fonts}/**/*.*',
+    gulp.src(['app/{img,fonts,js}/**/*.*',
 	                 'app/*.*'])
         .pipe(gulp.dest('build/'));
 });
+
+
+
+
 
 gulp.task('assets:styles', function() {
     gulp.src('app/styles/vendor/**/*.*')

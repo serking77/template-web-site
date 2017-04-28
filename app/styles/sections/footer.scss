@@ -1,14 +1,94 @@
 .footer {
-    background: #414141;
-}
-.social__link {
-    width: 30px;
-    height: 30px;
-    display: block;
+    .container {
+        @extend %clearfix;
+    }
 }
 
-@each $social in (vk, fb, tw) {
-    .social__link_#{$social} {
-        background: url('/img/icons/#{$social}.png') 0 0 no-repeat;
+.footer {
+    background: $heders-footer;
+    position: relative;
+}
+
+.footer__left {
+    float: left;
+    width: 50%;
+            @include phones {
+            float: none;
+            width: auto;
+            text-align: center;
+    }
+}
+
+.footer__right {
+    float: right;
+    width: 50%;
+            @include phones {
+            float: none;
+            width: auto;
+    }
+}
+
+.copyright {
+    @include fira(light);
+    font-size: rem(14);
+    color: #9c9c9c;
+    line-height: rem(50);
+    padding-left: 10px;
+}
+
+.socials {
+    font-size: 0;
+    text-align: right;
+    padding-top: rem(8);
+    padding-bottom: rem(8);
+    padding-right: 10px;
+        @include phones {
+            text-align: center;
+    }
+}
+
+.socials__item {
+    display: inline-block;
+}
+
+.socials__link {
+   // margin-top: rem(50);
+    width: rem(34);
+    height: rem(34);
+    display: block;
+    background-image: url('/img/icons/sprite.png');
+    background-repeat: no-repeat;
+
+}
+
+
+.socials__link_fb {
+    background-position: rem(0) 0;
+    margin-right: rem(7);
+    &:hover {
+        background-position: - rem(35) 0;
+    }
+}
+
+.socials__link_vk {
+    background-position: - rem(70) 0;
+    margin-right: rem(7);
+    &:hover {
+        background-position: - rem(105) 0;
+    }
+}
+
+.socials__link_tw {
+    background-position: - rem(140) 0;
+    margin-right: rem(7);
+    &:hover {
+        background-position: - rem(175) 0;
+    }
+}
+
+.socials__link_gh {
+    background-position: - rem(210) 0;
+    &:hover {
+        background-position: - rem(244) 0;
     }
 }
