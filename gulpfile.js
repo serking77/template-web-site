@@ -107,7 +107,8 @@ gulp.task('browser-sync', function() {
 gulp.task('assets', [
 	'assets:img-fonts',
     'assets:styles',
-    'assets:js'
+    'assets:js',
+    'assets:folder'
 ]);
 
 
@@ -131,5 +132,10 @@ gulp.task('assets:styles', function() {
 gulp.task('assets:js', function() {
     gulp.src('app/js/vendor/**/*.*')
         .pipe(gulp.dest('build/js/vendor/'));
+});
+
+gulp.task('assets:folder', function() {
+    gulp.src('app/_**/**/*.*')
+        .pipe(gulp.dest('build/'));
 });
 
