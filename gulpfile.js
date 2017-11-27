@@ -41,7 +41,7 @@ gulp.task('build', ['styles', 'assets']);
 gulp.task('watch', function() {
 	gulp.watch('app/styles/**/*.scss', ['styles']); //стили
     //gulp.watch('app/js/**/*.js', ['scripts']); //скрипты
-    gulp.watch(['app/{img,fonts,js}/**/*.*', 'app/*.*'], ['assets']); //наши локальные файлы(картинки, шрифты) и index.html
+    gulp.watch(['app/{img,fonts,js}/**/*.*', 'app/_**/**/*.*', 'app/*.*'], ['assets']); //наши локальные файлы(картинки, шрифты) и index.html
     gulp.watch('app/**/*.*').on('change', browserSync.reload); //Перезапуск browserSynс
 });
 
